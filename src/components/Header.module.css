@@ -1,0 +1,19 @@
+.header {
+  background: var(--gray-700);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 12.5rem;
+  gap: 1.3333rem;
+}
+
+.header div {
+  font-size: 2.5rem;
+  line-height: 3.025rem;
+  font-weight: 900;
+  color: var(--blue);
+}
+
+.header div span + span {
+  color: var(--purple-dark);
+}
