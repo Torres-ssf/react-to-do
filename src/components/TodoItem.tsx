@@ -1,4 +1,5 @@
 import { Check, Trash } from 'phosphor-react'
+import { useState } from 'react'
 
 import styles from './TodoItem.module.css'
 
@@ -6,22 +7,31 @@ export interface ITodoItemProps {
   id: string
   task: string
   isCompleted: boolean
+  onSetCompleted: (id: string) => void
 }
 
 export function TodoItem(props: ITodoItemProps) {
+  const [isCompleted, setIsCompleted] = useState(props.isCompleted)
+
+  function handleSetCompleted() {
+    setIsCompleted(!isCompleted)
+    props.onSetCompleted(props.id)
+  }
+
   return (
     <li className={styles.todoItem}>
       <button
         type="button"
+        onClick={handleSetCompleted}
         className={
-          props.isCompleted
+          isCompleted
             ? `${styles.checkButton} ${styles.checkButtonCompleted}`
             : styles.checkButton
         }
       >
-        {props.isCompleted && <Check weight="bold" size={14} />}
+        {isCompleted && <Check weight="bold" size={14} />}
       </button>
-      {props.isCompleted ? (
+      {isCompleted ? (
         <p>
           <s>{props.task}</s>
         </p>
