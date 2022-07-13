@@ -22,6 +22,10 @@ const staticTasks: ITodoItem[] = [
 export function TodosContainer() {
   const [tasks, setTasks] = useState(staticTasks)
 
+  const numberOfTasks = tasks.length
+  const numberOfCompletedTasks = tasks.filter(task => task.isCompleted).length
+  const numberOfIncompletedTasks = numberOfTasks - numberOfCompletedTasks
+
   function onSetCompleted(id: string) {
     setTasks(
       tasks.map(task => {
@@ -37,12 +41,13 @@ export function TodosContainer() {
     <div className={styles.todoContainer}>
       <header>
         <div>
-          <strong>Pending tasks </strong>
-          <p>0</p>
+          <strong>Pending tasks</strong> <p>{numberOfIncompletedTasks}</p>
         </div>
         <div>
-          <strong>Completed tasks </strong>
-          <p>2 from 5</p>
+          <strong>Completed tasks</strong>{' '}
+          <p>
+            {numberOfCompletedTasks} from {numberOfTasks}
+          </p>
         </div>
       </header>
       <ul>
