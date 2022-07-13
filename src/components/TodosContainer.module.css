@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 18rem;
+  margin-top: 5.68rem;
 }
 
 .todoContainer header {
