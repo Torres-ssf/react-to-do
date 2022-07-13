@@ -8,6 +8,7 @@ export interface ITodoItemProps {
   task: string
   isCompleted: boolean
   onSetCompleted: (id: string) => void
+  onDeleteTask: (id: string) => void
 }
 
 export function TodoItem(props: ITodoItemProps) {
@@ -16,6 +17,10 @@ export function TodoItem(props: ITodoItemProps) {
   function handleSetCompleted() {
     setIsCompleted(!isCompleted)
     props.onSetCompleted(props.id)
+  }
+
+  function handleDeleteTask() {
+    props.onDeleteTask(props.id)
   }
 
   return (
@@ -38,7 +43,11 @@ export function TodoItem(props: ITodoItemProps) {
       ) : (
         <p>{props.task}</p>
       )}
-      <button type="button" className={styles.deleteButton}>
+      <button
+        type="button"
+        className={styles.deleteButton}
+        onClick={handleDeleteTask}
+      >
         <Trash className={styles.trashIcon} size={16} />
       </button>
     </li>

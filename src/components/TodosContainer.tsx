@@ -37,6 +37,10 @@ export function TodosContainer() {
     )
   }
 
+  function onDeleteTask(id: string) {
+    setTasks(tasks.filter(task => task.id !== id))
+  }
+
   return (
     <div className={styles.todoContainer}>
       <header>
@@ -52,7 +56,12 @@ export function TodosContainer() {
       </header>
       <ul>
         {tasks.map(task => (
-          <TodoItem key={task.id} {...task} onSetCompleted={onSetCompleted} />
+          <TodoItem
+            key={task.id}
+            {...task}
+            onSetCompleted={onSetCompleted}
+            onDeleteTask={onDeleteTask}
+          />
         ))}
       </ul>
     </div>
