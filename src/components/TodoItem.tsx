@@ -7,8 +7,8 @@ export interface ITodoItemProps {
   id: string
   task: string
   isCompleted: boolean
-  onSetCompleted: (id: string) => void
-  onDeleteTask: (id: string) => void
+  onDeleteTodo: (id: string) => void
+  onSetTodoCompleted: (id: string) => void
 }
 
 export function TodoItem(props: ITodoItemProps) {
@@ -16,11 +16,11 @@ export function TodoItem(props: ITodoItemProps) {
 
   function handleSetCompleted() {
     setIsCompleted(!isCompleted)
-    props.onSetCompleted(props.id)
+    props.onSetTodoCompleted(props.id)
   }
 
   function handleDeleteTask() {
-    props.onDeleteTask(props.id)
+    props.onDeleteTodo(props.id)
   }
 
   return (
