@@ -1,14 +1,26 @@
 import { PlusCircle } from 'phosphor-react'
 import { FormEvent, useState } from 'react'
 
+import { formatText } from '../helpers'
 import styles from './TodoForm.module.css'
 
-export function TodoForm() {
+export interface ITodoFormProps {
+  onAddTodo: (task: string) => void
+}
+
+export function TodoForm(props: ITodoFormProps) {
   const [task, setTask] = useState('')
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    console.log(task)
+
+    const text = formatText(task)
+
+    if (text.length) {
+      props.onAddTodo(text)
+    }
+
+    setTask('')
   }
 
   return (
